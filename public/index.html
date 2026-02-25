@@ -429,7 +429,9 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    showStatus('✅ Processing started! Videos are being rendered...', 'success');
+                    showStatus('✅ Processing started! Videos are being rendered... Check back in a few minutes and refresh the videos list.', 'success');
+                    // Auto-refresh videos after 30 seconds
+                    setTimeout(loadVideos, 30000);
                 } else {
                     showStatus(`❌ Error: ${data.error || 'Processing failed'}`, 'error');
                 }
