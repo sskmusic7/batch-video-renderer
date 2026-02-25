@@ -10,6 +10,7 @@ const app = express();
 const upload = multer({ dest: '/tmp/uploads/' });
 
 app.use(express.json());
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // Health check
 app.get('/api/health', (req, res) => {
