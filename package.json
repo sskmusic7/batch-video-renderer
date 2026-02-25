@@ -20,5 +20,12 @@
     "@types/node": "^20.10.0",
     "typescript": "^5.9.3",
     "tsx": "^4.7.0"
+  },
+  "scripts": {
+    "server": "tsx src/server.ts",
+    "start": "remotion studio",
+    "build": "remotion bundle",
+    "render:all": "./deploy/render-all.sh",
+    "deploy": "./deploy/deploy-cloudrun.sh"
   }
 }
