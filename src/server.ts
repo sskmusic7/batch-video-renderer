@@ -127,6 +127,84 @@ app.get('/api/compositions', (req, res) => {
   });
 });
 
+// List rendered videos
+app.get('/api/videos', (req, res) => {
+  try {
+    const outputDir = path.join(process.cwd(), 'output', 'batch-videos');
+    const publicVideosDir = path.join(process.cwd(), 'public', 'videos');
+    
+    // Ensure public videos directory exists
+    if (!fs.existsSync(publicVideosDir)) {
+      fs.mkdirSync(publicVideosDir, { recursive: true });
+    }
+
+    // Copy videos from output to public if they exist
+    if (fs.existsSync(outputDir)) {
+      const outputVideos = fs.readdirSync(outputDir)
+        .filter(f => f.endsWith('.mp4'))
+        .map(f => {
+          const srcPath = path.join(outputDir, f);
+          const destPath = path.join(publicVideosDir, f);
+          // Copy to public if not already there or if source is newer
+          if (!fs.existsSync(destPath) || 
+              fs.statSync(srcPath).mtime > fs.statSync(destPath).mtime) {
+            fs.copyFileSync(srcPath, destPath);
+          }
+          return f;
+        });
+    }
+
+    // List videos in public directory
+    const videos: any[] = [];
+    if (fs.existsSync(publicVideosDir)) {
+      const files = fs.readdirSync(publicVideosDir)
+        .filter(f => f.endsWith('.mp4'))
+        .sort();
+      
+      for (const file of files) {
+        const filePath = path.join(publicVideosDir, file);
+        const stats = fs.statSync(filePath);
+        videos.push({
+          filename: file,
+          url: `/videos/${file}`,
+          size: stats.size,
+          created: stats.birthtime.toISOString(),
+          modified: stats.mtime.toISOString()
+        });
+      }
+    }
+
+    res.json({ videos, count: videos.length });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Download video
+app.get('/api/videos/:filename', (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const videoPath = path.join(process.cwd(), 'public', 'videos', filename);
+    
+    if (!fs.existsSync(videoPath)) {
+      return res.status(404).json({ error: 'Video not found' });
+    }
+
+    // Set headers for video download
+    res.setHeader('Content-Type', 'video/mp4');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    
+    // Stream the video file
+    const videoStream = fs.createReadStream(videoPath);
+    videoStream.pipe(res);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Serve videos statically
+app.use('/videos', express.static(path.join(process.cwd(), 'public', 'videos')));
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);

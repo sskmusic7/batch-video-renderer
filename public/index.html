@@ -214,6 +214,48 @@
             color: #666;
             font-size: 0.9em;
         }
+
+        .video-item {
+            background: #f8f9ff;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-info {
+            flex: 1;
+        }
+
+        .video-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .video-meta {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .video-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .video-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -244,6 +286,15 @@
         </div>
 
         <div class="status" id="status"></div>
+
+        <!-- Videos Section -->
+        <div style="margin-top: 40px; padding-top: 40px; border-top: 2px solid #eee;">
+            <h2 style="color: #333; margin-bottom: 20px;">📹 Rendered Videos</h2>
+            <button class="btn-upload" id="refreshVideos" style="margin-bottom: 20px;">
+                🔄 Refresh Videos
+            </button>
+            <div id="videosList" style="display: grid; gap: 15px;"></div>
+        </div>
     </div>
 
     <script>
@@ -389,6 +440,43 @@
                 processBtn.textContent = 'Process & Render Videos';
             }
         });
+
+        const videosList = document.getElementById('videosList');
+        const refreshVideos = document.getElementById('refreshVideos');
+
+        // Load videos on page load
+        loadVideos();
+
+        refreshVideos.addEventListener('click', loadVideos);
+
+        async function loadVideos() {
+            try {
+                const response = await fetch(`${API_URL}/api/videos`);
+                const data = await response.json();
+
+                if (response.ok && data.videos && data.videos.length > 0) {
+                    videosList.innerHTML = data.videos.map(video => {
+                        const sizeMB = (video.size / (1024 * 1024)).toFixed(2);
+                        const date = new Date(video.created).toLocaleString();
+                        return `
+                            <div class="video-item">
+                                <div class="video-info">
+                                    <div class="video-name">${video.filename}</div>
+                                    <div class="video-meta">${sizeMB} MB • ${date}</div>
+                                </div>
+                                <a href="${API_URL}${video.url}" download="${video.filename}" class="video-download">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    videosList.innerHTML = '<p style="color: #999; text-align: center; padding: 20px;">No videos rendered yet. Upload images and process them to see videos here.</p>';
+                }
+            } catch (error) {
+                videosList.innerHTML = '<p style="color: #f5576c; text-align: center; padding: 20px;">Error loading videos. Make sure the service is running.</p>';
+            }
+        }
 
         // Check if service is available
         fetch(`${API_URL}/api/health`)
