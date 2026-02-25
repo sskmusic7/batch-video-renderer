@@ -1,0 +1,135 @@
+{
+  "images": [
+    {
+      "filename": "batch-image-11 (1).png",
+      "publicPath": "/batch-images/batch-image-11 (1).png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 0
+    },
+    {
+      "filename": "batch-image-12 (2).png",
+      "publicPath": "/batch-images/batch-image-12 (2).png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 1
+    },
+    {
+      "filename": "batch-image-13 (1).png",
+      "publicPath": "/batch-images/batch-image-13 (1).png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 2
+    },
+    {
+      "filename": "batch-image-16.png",
+      "publicPath": "/batch-images/batch-image-16.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 3
+    },
+    {
+      "filename": "batch-image-17.png",
+      "publicPath": "/batch-images/batch-image-17.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 4
+    },
+    {
+      "filename": "batch-image-26.png",
+      "publicPath": "/batch-images/batch-image-26.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 5
+    },
+    {
+      "filename": "batch-image-27.png",
+      "publicPath": "/batch-images/batch-image-27.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 6
+    },
+    {
+      "filename": "batch-image-28.png",
+      "publicPath": "/batch-images/batch-image-28.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 7
+    },
+    {
+      "filename": "batch-image-29.png",
+      "publicPath": "/batch-images/batch-image-29.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 8
+    },
+    {
+      "filename": "batch-image-30.png",
+      "publicPath": "/batch-images/batch-image-30.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 9
+    },
+    {
+      "filename": "batch-image-32.png",
+      "publicPath": "/batch-images/batch-image-32.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 10
+    },
+    {
+      "filename": "batch-image-34.png",
+      "publicPath": "/batch-images/batch-image-34.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 11
+    },
+    {
+      "filename": "batch-image-41.png",
+      "publicPath": "/batch-images/batch-image-41.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 12
+    },
+    {
+      "filename": "batch-image-43.png",
+      "publicPath": "/batch-images/batch-image-43.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 13
+    },
+    {
+      "filename": "batch-image-44.png",
+      "publicPath": "/batch-images/batch-image-44.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 14
+    },
+    {
+      "filename": "batch-image-49.png",
+      "publicPath": "/batch-images/batch-image-49.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 15
+    },
+    {
+      "filename": "batch-image-5 (5).png",
+      "publicPath": "/batch-images/batch-image-5 (5).png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 16
+    },
+    {
+      "filename": "batch-image-50.png",
+      "publicPath": "/batch-images/batch-image-50.png",
+      "prompt": "No text detected",
+      "hasPrompt": false,
+      "index": 17
+    }
+  ],
+  "metadata": {
+    "totalImages": 18,
+    "imagesWithPrompts": 0,
+    "sourceDirectory": "/Users/sskmusic/Simple B roll Generator/my-broll/public/batch-images"
+  }
+}
